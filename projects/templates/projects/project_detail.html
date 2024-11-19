@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ project.name }}</title>
+</head>
+<body>
+    <h1>{{ project.name }}</h1>
+    <p><strong>Description:</strong> {{ project.description }}</p>
+
+    <h2>User Stories</h2>
+    <ul>
+        {% for story in project.user_stories.all %}
+            <li>{{ story.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

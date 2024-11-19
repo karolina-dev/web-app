@@ -1,10 +1,9 @@
-from django.urls import path
-from . import views  # Importando las vistas desde views.py
-
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('companies/', views.company_list, name='company_list'),  # Definiendo la URL para la vista
+    path('admin/', admin.site.urls),
+    path('', include('projects.urls')),  # Incluye las rutas de la app 'projects'
 ]
 
 
