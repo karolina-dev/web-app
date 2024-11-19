@@ -1,0 +1,17 @@
+<!-- company_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company List</title>
+</head>
+<body>
+    <h1>Company List</h1>
+    <ul>
+        {% for company in companies %}
+            <li>{{ company.name }}</li>  <!-- Ajusta el campo que quieras mostrar -->
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
