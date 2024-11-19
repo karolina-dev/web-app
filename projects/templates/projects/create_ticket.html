@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Historia de Usuario</title>
+</head>
+<body>
+    <h1>Crear Historia de Usuario</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <h2>Historia de Usuario</h2>
+        {{ user_story_form.as_p }}
+        <h2>Ticket Inicial</h2>
+        {{ ticket_form.as_p }}
+        <button type="submit">Crear</button>
+    </form>
+
+    <a href="{% url 'project_list' %}">Volver al listado de proyectos</a>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Tickets</title>
+</head>
+<body>
+    <h1>Historial de Tickets</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Comentarios</th>
+                <th>Historia de Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.get_status_display }}</td>
+                    <td>{{ ticket.comments }}</td>
+                    <td>{{ ticket.user_story.title }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'project_list' %}">Volver al listado de proyectos</a>
+</body>
+</html>

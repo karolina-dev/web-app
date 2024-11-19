@@ -1,0 +1,17 @@
+<!-- templates/projects/ticket_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket List</title>
+</head>
+<body>
+    <h1>Ticket List for Project: {{ project.name }}</h1>
+    <ul>
+        {% for ticket in tickets %}
+            <li>{{ ticket.title }} - {{ ticket.status }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_ticket' project.id %}">Create New Ticket</a>
+</body>
+</html>

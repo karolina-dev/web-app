@@ -1,0 +1,21 @@
+<!-- templates/projects/project_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project List</title>
+</head>
+<body>
+    <h1>Project List</h1>
+    <ul>
+        {% for project in projects %}
+            <li>
+                <a href="{% url 'ticket_list' project.id %}">{{ project.name }}</a> -
+                <a href="{% url 'edit_project' project.id %}">Edit</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_project' %}">Create New Project</a>
+</body>
+</html>
+
