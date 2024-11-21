@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from psycopg2 import extensions
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s-^2)vf^ko2)+gtkdmz%1lpuooh+riayz38&)&b072p5oq1&6y'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.onrender.com']
 
 # settings.py
 AUTH_USER_MODEL = 'projects.CustomUser'
@@ -85,9 +87,13 @@ WSGI_APPLICATION = 'project_management.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),  # Nombre de la base de datos
+        'USER': os.environ.get('DB_USER'),  # Usuario de la base de datos
+        'PASSWORD': os.environ.get('DB_PASSWORD'),  # Contraseña de la base de datos
+        'HOST': os.environ.get('DB_HOST', 'localhost'),  # Dirección del servidor de base de datos
+        'PORT': os.environ.get('DB_PORT', '5432'),  # Puerto de PostgreSQL
     }
 }
 
