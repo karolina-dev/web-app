@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from psycopg2 import extensions
+from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,19 +84,35 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project_management.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),  # Nombre de la base de datos
-        'USER': os.environ.get('DB_USER'),  # Usuario de la base de datos
-        'PASSWORD': os.environ.get('DB_PASSWORD'),  # Contraseña de la base de datos
-        'HOST': os.environ.get('DB_HOST', 'localhost'),  # Dirección del servidor de base de datos
-        'PORT': os.environ.get('DB_PORT', '5432'),  # Puerto de PostgreSQL
+
+
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    url = urlparse(DATABASE_URL)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': url.path[1:],  # Nombre de la base de datos
+            'USER': url.username,  # Usuario de la base de datos
+            'PASSWORD': url.password,  # Contraseña de la base de datos
+            'HOST': url.hostname,  # Host de la base de datos
+            'PORT': url.port,  # Puerto de la base de datos
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation
