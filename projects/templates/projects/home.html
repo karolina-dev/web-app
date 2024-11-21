@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Panel de Administración de Proyectos</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
     <h1>Bienvenido al panel de administración de proyectos</h1>
 
-    <p><a href="{% url 'signup' %}">Crear una cuenta</a></p>  <!-- Enlace al formulario de registro -->
-    <p><a href="{% url 'login' %}">Iniciar sesión</a></p>    <!-- Enlace al formulario de inicio de sesión -->
+    {% if user.is_authenticated %}
+        <p>Bienvenido, {{ user.username }}. <a href="{% url 'project_list' %}">Ver proyectos</a></p>
+    {% else %}
+        <p>¿Aún no tienes cuenta? <a href="{% url 'signup' %}">Regístrate</a> o <a href="{% url 'login' %}">Inicia sesión</a>.</p>
+    {% endif %}
+{% endblock %}
 
-
-        <p><a href="{% url 'project_list' %}">Ver proyectos</a></p>  <!-- Enlace a los proyectos si el usuario está autenticado -->
-        <p>Por favor, inicie sesión para acceder a los proyectos.</p>
-
-</body>
-</html>

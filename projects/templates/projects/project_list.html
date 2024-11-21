@@ -1,27 +1,20 @@
-<!-- templates/projects/project_list.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project List</title>
-</head>
-<body>
-    <h1>Project List</h1>
-    <ul>
-        {% for project in projects %}
-            <li>
-                <a href="{% url 'ticket_list' project.id %}">{{ project.name }}</a> -
-                <a href="{% url 'edit_project' project.id %}">Edit</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create_project' %}">Create New Project</a>
 
-{% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">Cerrar sesión</a>
-{% else %}
-    <a href="{% url 'login' %}">Iniciar sesión</a>
-{% endif %}
-</body>
-</html>
+
+{% extends 'base.html' %}
+
+{% block title %}Lista de Proyectos{% endblock %}
+
+{% block content %}
+    <h2>Proyectos</h2>
+
+    <div class="list-group">
+        {% for project in projects %}
+            <a href="{% url 'ticket_list' project.id %}" class="list-group-item list-group-item-action">
+                {{ project.name }}
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
 

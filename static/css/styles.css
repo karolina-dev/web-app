@@ -1,0 +1,43 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+h1, h2 {
+    color: #333;
+}
+/* Estilo para centrar el formulario */
+.form-container {
+    max-width: 450px;  /* El ancho máximo del formulario */
+    margin: 100px auto; /* Centrado vertical y horizontal */
+    padding: 40px;
+    background-color: #f8f9fa;  /* Fondo suave */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+}
+
+/* Título del formulario */
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #343a40;
+}
+
+/* Estilo para los botones */
+.btn-primary {
+    width: 100%;  /* Hacer que el botón ocupe todo el ancho */
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Estilo para los enlaces de texto */
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
