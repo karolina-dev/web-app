@@ -16,6 +16,12 @@
         {% endfor %}
     </ul>
     <a href="{% url 'create_project' %}">Create New Project</a>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+{% else %}
+    <a href="{% url 'login' %}">Iniciar sesión</a>
+{% endif %}
 </body>
 </html>
 

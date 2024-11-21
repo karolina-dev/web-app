@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Panel de Administración de Proyectos</title>
 </head>
 <body>
-    <h1>Welcome to the Project Management App</h1>
-    <a href="{% url 'company_list' %}">View Companies</a>
+    <h1>Bienvenido al panel de administración de proyectos</h1>
+
+    <p><a href="{% url 'signup' %}">Crear una cuenta</a></p>  <!-- Enlace al formulario de registro -->
+    <p><a href="{% url 'login' %}">Iniciar sesión</a></p>    <!-- Enlace al formulario de inicio de sesión -->
+
+
+        <p><a href="{% url 'project_list' %}">Ver proyectos</a></p>  <!-- Enlace a los proyectos si el usuario está autenticado -->
+        <p>Por favor, inicie sesión para acceder a los proyectos.</p>
+
 </body>
 </html>
-
-

@@ -6,9 +6,10 @@ from .models import Project, Ticket, UserStory
 from django.contrib.auth.decorators import login_required
 
 
+
 #vista principal
 def home(request):
-    return HttpResponse("Bienvenido al panel de administración de proyectos")
+    return render(request, 'projects/home.html')
 
 #vista de registro
 def signup(request):
@@ -20,7 +21,7 @@ def signup(request):
             return redirect('home')  # Redirige a la página principal
     else:
         form = CustomUserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'projects/signup.html', {'form': form})
 
 # Vista para listar todos los proyectos
 def project_list(request):

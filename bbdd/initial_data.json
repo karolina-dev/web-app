@@ -31,54 +31,5 @@
       "address": "Avenida 7 #8-9",
       "email": "companiac@example.com"
     }
-  },
-  {
-    "model": "projects.project",
-    "pk": 1,
-    "fields": {
-      "name": "Proyecto A",
-      "description": "Proyecto inicial de la Compañía A",
-      "company": 1
-    }
-  },
-  {
-    "model": "projects.project",
-    "pk": 2,
-    "fields": {
-      "name": "Proyecto B",
-      "description": "Primer proyecto de la Compañía B",
-      "company": 2
-    }
-  },
-  {
-    "model": "projects.project",
-    "pk": 3,
-    "fields": {
-      "name": "Proyecto C",
-      "description": "Segundo proyecto de la Compañía B",
-      "company": 2
-    }
-  },
-  {
-    "model": "projects.userstory",
-    "pk": 1,
-    "fields": {
-      "title": "Historia 1 para Proyecto A",
-      "description": "Funcionalidad principal del Proyecto A",
-      "project": 1
-    }
-  },
-{
-  "model": "projects.ticket",
-  "pk": 1,
-  "fields": {
-    "user_story": 1,
-    "title": "Crear interfaz",
-    "description": "Crear la interfaz de usuario",
-    "status": "Activo",
-    "comments": "Comentarios adicionales",
-    "created_at": "2024-11-19T12:00:00Z",
-    "updated_at": "2024-11-19T12:00:00Z"
   }
-}
 ]

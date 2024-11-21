@@ -30,9 +30,13 @@ ALLOWED_HOSTS = []
 # settings.py
 AUTH_USER_MODEL = 'projects.CustomUser'
 
+# Redirige al usuario a la página de proyectos después de iniciar sesión
+LOGIN_REDIRECT_URL = 'project_list'
+
+LOGOUT_REDIRECT_URL = 'home'
 
 
-# Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
