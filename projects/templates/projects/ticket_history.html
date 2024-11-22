@@ -1,31 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Historial de Tickets</title>
-</head>
-<body>
-    <h1>Historial de Tickets</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Historial de Tickets para el Proyecto: {{ project.name }}</h2>
     <table>
         <thead>
             <tr>
                 <th>Título</th>
                 <th>Estado</th>
-                <th>Comentarios</th>
-                <th>Historia de Usuario</th>
+                <th>Descripción</th>
+                <th>Fecha de Creación</th>
             </tr>
         </thead>
         <tbody>
             {% for ticket in tickets %}
                 <tr>
                     <td>{{ ticket.title }}</td>
-                    <td>{{ ticket.get_status_display }}</td>
-                    <td>{{ ticket.comments }}</td>
-                    <td>{{ ticket.user_story.title }}</td>
+                    <td>{{ ticket.status }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.created_at }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'project_list' %}">Volver al listado de proyectos</a>
-</body>
-</html>
+{% endblock %}
