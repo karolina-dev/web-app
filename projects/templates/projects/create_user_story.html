@@ -1,2 +1,19 @@
-<!
+{% extends 'base.html' %}
 
+{% block content %}
+    <div class="form-container">
+        <h2>Crear Historia de Usuario y Primer Ticket</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="user_story">Historia de Usuario</label>
+                {{ user_story_form.as_p }}
+            </div>
+            <div class="form-group">
+                <label for="ticket">Ticket</label>
+                {{ ticket_form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </form>
+    </div>
+{% endblock %}
