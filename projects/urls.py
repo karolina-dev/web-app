@@ -11,6 +11,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),  # Página de registro
     path('projects/', views.project_list, name='project_list'),
     path('projects/create/', views.create_project, name='create_project'),
+    path('projects/<int:id>/', views.project_detail, name='project_detail'),
     path('projects/edit/<int:pk>/', views.edit_project, name='edit_project'),
     path('projects/<int:project_id>/tickets/', views.ticket_list, name='ticket_list'),
     path('projects/<int:project_id>/tickets/create/', views.create_ticket, name='create_ticket'),
