@@ -1,11 +1,16 @@
-def edit_ticket(request, ticket_id):
-    ticket = get_object_or_404(Ticket, id=ticket_id)
-    if request.method == 'POST':
-        form = TicketForm(request.POST, instance=ticket)
-        if form.is_valid():
-            form.save()
-            return redirect('ticket_list', project_id=ticket.user_story.project.id)
-    else:
-        form = TicketForm(instance=ticket)
-    return render(request, 'projects/edit_ticket.html', {'form': form, 'ticket': ticket})
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>Editar Ticket</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="ticket">Ticket</label>
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+{% endblock %}
 
