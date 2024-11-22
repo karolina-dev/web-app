@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'project_management.wsgi.application'
 
 
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
+DATABASE_URL = os.environ.get('postgres://prueba_zrgi_user:kAGK5iZnYDhEF1mBigaVFLaSLCjVIvfQ@dpg-ct01dg1opnds73a69e60-a.onrender.com:5432/prueba')
 
 if DATABASE_URL:
     url = urlparse(DATABASE_URL)
