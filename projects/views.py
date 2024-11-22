@@ -11,7 +11,7 @@ from django.contrib import messages
 
 # Vista de inicio
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'projects/home.html')
 
 # Vista de registro
 def signup(request):
