@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Ticket</title>
-</head>
-<body>
-    <h1>Editar Ticket</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar cambios</button>
-    </form>
-    <a href="{% url 'ticket_list' project_id=ticket.user_story.project.id %}">Volver al listado de tickets</a>
-</body>
-</html>
+def edit_ticket(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+    if request.method == 'POST':
+        form = TicketForm(request.POST, instance=ticket)
+        if form.is_valid():
+            form.save()
+            return redirect('ticket_list', project_id=ticket.user_story.project.id)
+    else:
+        form = TicketForm(instance=ticket)
+    return render(request, 'projects/edit_ticket.html', {'form': form, 'ticket': ticket})
+
