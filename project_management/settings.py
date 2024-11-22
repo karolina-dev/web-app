@@ -33,10 +33,12 @@ ALLOWED_HOSTS = ['.onrender.com']
 # settings.py
 AUTH_USER_MODEL = 'projects.CustomUser'
 
-# Redirige al usuario a la página de proyectos después de iniciar sesión
-LOGIN_REDIRECT_URL = 'project_list'
 
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'project_list'
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+
+
 
 SESSION_COOKIE_AGE = 3600  # 1 hora
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Para que la sesión se cierre al cerrar el navegador
@@ -71,7 +73,7 @@ ROOT_URLCONF = 'project_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'projects/templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
