@@ -1,7 +1,7 @@
 # web-app
 Aplicación de prueba
 
-Aquí tienes un ejemplo de cómo podrías estructurar el `README.md` para tu proyecto en GitHub:
+
 
 ```markdown
 # Panel de Administración de Proyectos de Desarrollo
