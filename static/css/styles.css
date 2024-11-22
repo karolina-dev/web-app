@@ -1,64 +1,112 @@
-
+/* Estilo global */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4; /* Fondo suave */
+    background-color: #f8f9fa; /* Fondo suave */
+    margin: 0;
+    padding: 0;
 }
 
 
 .navbar {
-    margin-bottom: 20px; /* Separación de la barra de navegación */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    color: #ffffff; 
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #adb5bd; 
+}
+
+.navbar-toggler {
+    border: none;
 }
 
 
-h1, h2 {
-    color: #333;
+.form-container {
+    max-width: 400px; /* Ancho máximo del formulario */
+    width: 100%;
+    margin: 50px auto; /* Centrado vertical y horizontal */
+    padding: 30px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+
+.form-container h2 {
+    font-size: 1.8rem;
+    color: #343a40; /* Gris oscuro */
+    margin-bottom: 20px;
     text-align: center;
 }
 
-/* Estilo para forms*/
-.form-container {
-    max-width: 450px; /* El ancho máximo del formulario */
-    margin: 50px auto; /* Centrado vertical y horizontal */
-    padding: 40px;
-    background-color: #ffffff;  /* Fondo blanco */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+
+form input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ced4da; /* Borde gris claro */
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 
+form input:focus {
+    border-color: #007bff; /* Azul Bootstrap */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Resplandor azul */
+    outline: none;
+}
+
+/* Botón principal */
 .btn-primary {
     width: 100%;
     padding: 12px;
     font-size: 16px;
     background-color: #007bff;
-    border-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Hover del botón principal */
 .btn-primary:hover {
     background-color: #0056b3;
-    border-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
-/* Estilo para la lista de proyectos */
-ul {
-    list-style-type: none;
-    padding-left: 0;
+.text-center {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+    color: #6c757d; 
 }
 
-ul li {
-    background-color: #fff;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-}
-
-ul li a {
-    text-decoration: none;
+.text-center a {
     color: #007bff;
+    text-decoration: none;
 }
 
-ul li a:hover {
+.text-center a:hover {
     text-decoration: underline;
 }
+
+
+form .form-group {
+    margin-bottom: 20px;
+}
+
 
 
