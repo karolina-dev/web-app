@@ -26,7 +26,7 @@ class UserStoryForm(forms.ModelForm):
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['title', 'description', 'status', 'user_story']
+        fields = ['title', 'description', 'user_story', 'status', 'project']
 
     def __init__(self, *args, **kwargs):
         user_story = kwargs.pop('user_story', None)  # Historia de usuario inicial (si se pasa desde la vista)
