@@ -1,43 +1,64 @@
+
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Fondo suave */
 }
+
+
+.navbar {
+    margin-bottom: 20px; /* Separación de la barra de navegación */
+}
+
 
 h1, h2 {
     color: #333;
+    text-align: center;
 }
-/* Estilo para centrar el formulario */
+
+/* Estilo para forms*/
 .form-container {
-    max-width: 450px;  /* El ancho máximo del formulario */
-    margin: 100px auto; /* Centrado vertical y horizontal */
+    max-width: 450px; /* El ancho máximo del formulario */
+    margin: 50px auto; /* Centrado vertical y horizontal */
     padding: 40px;
-    background-color: #f8f9fa;  /* Fondo suave */
+    background-color: #ffffff;  /* Fondo blanco */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Sombra suave */
 }
 
-/* Título del formulario */
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-    color: #343a40;
-}
 
-/* Estilo para los botones */
 .btn-primary {
-    width: 100%;  /* Hacer que el botón ocupe todo el ancho */
+    width: 100%;
     padding: 12px;
     font-size: 16px;
     background-color: #007bff;
     border-color: #007bff;
 }
 
-/* Estilo para los enlaces de texto */
-.text-center {
-    text-align: center;
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
 
-.mt-3 {
-    margin-top: 1rem;
+/* Estilo para la lista de proyectos */
+ul {
+    list-style-type: none;
+    padding-left: 0;
 }
+
+ul li {
+    background-color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
 
