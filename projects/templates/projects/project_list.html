@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %}
 
 {% block title %}Lista de Proyectos{% endblock %}
@@ -20,7 +18,10 @@
         {% if projects %}
             <ul>
                 {% for project in projects %}
-                    <li>{{ project.name }} - <a href="{% url 'edit_project' project.id %}">Editar</a></li>
+                    <li>
+                        <a href="{% url 'project_detail' pk=project.pk %}">{{ project.name }}</a> 
+                        - {{ project.company.name }}
+                    </li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -28,7 +29,3 @@
         {% endif %}
     </div>
 {% endblock %}
-
-
-
-
