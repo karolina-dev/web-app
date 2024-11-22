@@ -36,7 +36,7 @@ AUTH_USER_MODEL = 'projects.CustomUser'
 # Redirige al usuario a la página de proyectos después de iniciar sesión
 LOGIN_REDIRECT_URL = 'project_list'
 
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = '/'
 
 SESSION_COOKIE_AGE = 3600  # 1 hora
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Para que la sesión se cierre al cerrar el navegador
