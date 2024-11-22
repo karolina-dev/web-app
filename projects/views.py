@@ -119,4 +119,9 @@ def cancel_ticket(request, ticket_id):
     ticket.save()
     return redirect('ticket_list', project_id=ticket.user_story.project.id)
 
+#cerrar sesion
+def user_logout(request):
+    logout(request)
+    return redirect('home')
+
 
