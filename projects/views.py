@@ -11,12 +11,8 @@ from django.contrib import messages
 
 # Vista de inicio
 def home(request):
-    if request.user.is_authenticated:
-        print(f'Usuario autenticado: {request.user.username}')
-    else:
-        print('Usuario no autenticado')
-    return render(request, 'projects/home.html')
-    
+    return render(request, 'home.html')
+
 # Vista de registro
 def signup(request):
     if request.method == 'POST':
