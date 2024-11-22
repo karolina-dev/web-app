@@ -11,18 +11,18 @@ from django.contrib import messages
 def home(request):
     return render(request, 'projects/home.html')
 
-
 # Vista de registro
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)  # Usa CustomUserCreationForm
         if form.is_valid():
-            user = form.save()
+            user = form.save()  # Guardar el usuario
             login(request, user)  # Iniciar sesión después del registro
             return redirect('home')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()  # Inicializa el formulario de usuario personalizado
     return render(request, 'projects/signup.html', {'form': form})
+
 
 
 # Vista de proyectos
