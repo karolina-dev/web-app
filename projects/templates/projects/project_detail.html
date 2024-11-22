@@ -1,19 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ project.name }}</title>
-</head>
-<body>
-    <h1>{{ project.name }}</h1>
-    <p><strong>Description:</strong> {{ project.description }}</p>
+{% extends 'base.html' %}
 
-    <h2>User Stories</h2>
+{% block title %}{{ project.name }} - Detalles{% endblock %}
+
+{% block content %}
+    <h1>{{ project.name }}</h1>
+    <p><strong>Descripción:</strong> {{ project.description }}</p>
+
+    <h2>Historias de Usuario</h2>
     <ul>
         {% for story in project.user_stories.all %}
-            <li>{{ story.title }}</li>
+            <li>{{ story.title }}: {{ story.description }}</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+    <h2>Tickets</h2>
+    <ul>
+        {% for ticket in project.tickets.all %}
+            <li>{{ ticket.title }} (Estado: {{ ticket.status }}) - {{ ticket.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'project_list' %}">Volver a la lista de proyectos</a>
+{% endblock %}
 
