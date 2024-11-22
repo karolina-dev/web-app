@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import CustomUserCreationForm 
 from django.contrib.auth.decorators import login_required
 from .forms import ProjectForm, TicketForm, UserStoryForm
 from .models import Project, Ticket, UserStory
@@ -14,13 +14,13 @@ def home(request):
 # Vista de registro
 def signup(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)  # Usa CustomUserCreationForm
+        form = CustomUserCreationForm(request.POST)  # Uso CustomUserCreationForm
         if form.is_valid():
             user = form.save()  # Guardar el usuario
             login(request, user)  # Iniciar sesión después del registro
             return redirect('home')
     else:
-        form = CustomUserCreationForm()  # Inicializa el formulario de usuario personalizado
+        form = CustomUserCreationForm()  
     return render(request, 'projects/signup.html', {'form': form})
 
 
