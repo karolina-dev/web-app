@@ -250,11 +250,11 @@ if DATABASE_URL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': url.path[1:],  # Nombre de la base de datos
-            'USER': url.username,  # Usuario de la base de datos
-            'PASSWORD': url.password,  # Contraseña de la base de datos
-            'HOST': url.hostname,  # Host de la base de datos
-            'PORT': url.port,  # Puerto de la base de datos
+            'NAME': 'prueba',  
+            'USER': 'prueba_zrgi_user', 
+            'PASSWORD': 'kAGK5iZnYDhEF1mBigaVFLaSLCjVIvfQ',  
+            'HOST': 'dpg-ct01dg1opnds73a69e60-a.com',
+            'PORT': '5432', 
         }
     }
 else:
