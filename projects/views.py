@@ -135,7 +135,7 @@ def edit_ticket(request, ticket_id):
             return redirect('ticket_list', project_id=ticket.user_story.project.id)
     else:
         form = TicketForm(instance=ticket)
-    return render(request, 'projects/edit_ticket.html', {'form': form})
+    return render(request, 'projects/edit_ticket.html', {'form': form,'ticket': ticket})
 
 
 # Vista para ver historial de tickets
