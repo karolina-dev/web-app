@@ -5,14 +5,20 @@
 {% block title %}Iniciar sesión{% endblock %}
 
 {% block content %}
-    <h2>Iniciar sesión</h2>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-    </form>
+    <div class="form-container">
+        <h2 class="text-center">Iniciar sesión</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        </form>
+        
+        <div class="text-center mt-3">
+            <p>¿No tienes cuenta? <a href="{% url 'signup' %}">Regístrate aquí</a></p>
+        </div>
+    </div>
 {% endblock %}
+
 
 
 
