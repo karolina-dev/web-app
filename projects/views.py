@@ -71,13 +71,15 @@ def project_list(request):
     return render(request, 'projects/project_list.html', {'projects': projects})
 
 #vista de detalles del proyecto
-def project_detail(request, pk):
-    project = get_object_or_404(Project, pk=pk)
+from django.shortcuts import render, get_object_or_404
+from .models import Project
 
-    # Prefetch para obtener las historias de usuario y tickets asociados
-    project = Project.objects.prefetch_related('user_stories__tickets').get(pk=pk)
+def project_detail(request, pk):
+    # Obtener el proyecto con historias de usuario y tickets asociados
+    project = get_object_or_404(Project.objects.prefetch_related('user_stories', 'tickets'), pk=pk)
 
     return render(request, 'projects/project_detail.html', {'project': project})
+
 
 
 # Vista de crear proyecto, validación de historias de usuario
