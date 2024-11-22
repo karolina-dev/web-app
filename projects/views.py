@@ -31,7 +31,7 @@ def signup(request):
 
     return render(request, 'projects/signup.html', {'form': form})
 
-## crear historia de usuario
+#crear historia de usuario
 @login_required
 def create_user_story(request, project_id):
     project = get_object_or_404(Project, id=project_id)
@@ -46,10 +46,12 @@ def create_user_story(request, project_id):
 
             ticket = ticket_form.save(commit=False)
             ticket.user_story = user_story
+            ticket.project = project
+            ticket.status = 'Activo'  # Estado predeterminado para el primer ticket
             ticket.save()
 
             messages.success(request, "Historia de usuario y ticket creados exitosamente.")
-            return redirect('project_list')  # Redirigir al listado de proyectos
+            return redirect('ticket_list', project_id=project.id)  # Redirigir a la lista de tickets del proyecto
         else:
             messages.error(request, "Hubo un error en la creación de la historia de usuario o el ticket.")
     else:
@@ -62,21 +64,29 @@ def create_user_story(request, project_id):
     })
 
 
+
 # Vista de proyectos
 def project_list(request):
     projects = Project.objects.all()  # Obtener todos los proyectos
     return render(request, 'projects/project_list.html', {'projects': projects})
 
 
-# Vista para crear un proyecto
+# Vista de crear proyecto, validación de historias de usuario
 def create_project(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('project_list')  # Redirigir al listado de proyectos
+            project = form.save()
+            
+            # Validación de que el proyecto tenga al menos 3 historias de usuario
+            if project.user_stories.count() < 3:
+                messages.error(request, "El proyecto debe tener al menos 3 historias de usuario.")
+                return redirect('create_project')
+            
+            return redirect('project_list')
     else:
         form = ProjectForm()
+    
     return render(request, 'projects/create_project.html', {'form': form})
 
 
@@ -139,7 +149,18 @@ def edit_ticket(request, ticket_id):
 def ticket_history(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     tickets = Ticket.objects.filter(user_story__project=project).order_by('status')
-    return render(request, 'projects/ticket_history.html', {'tickets': tickets, 'project': project})
+    
+    active_tickets = tickets.filter(status='Activo')
+    in_progress_tickets = tickets.filter(status='En Proceso')
+    finalized_tickets = tickets.filter(status='Finalizado')
+
+    return render(request, 'projects/ticket_history.html', {
+        'active_tickets': active_tickets,
+        'in_progress_tickets': in_progress_tickets,
+        'finalized_tickets': finalized_tickets,
+        'project': project,
+    })
+
 
 
 # Vista para cancelar un ticket
