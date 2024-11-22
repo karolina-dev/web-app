@@ -41,6 +41,7 @@ LOGOUT_REDIRECT_URL = '/'
 SESSION_COOKIE_AGE = 3600  # 1 hora
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Para que la sesión se cierre al cerrar el navegador
 SESSION_COOKIE_DOMAIN = '.onrender.com'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db' 
 
 
 
