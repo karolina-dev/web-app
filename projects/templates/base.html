@@ -29,8 +29,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'project_list' %}">Proyectos</a>
                         </li>
+                        <!-- Formulario de logout -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                            <form action="{% url 'logout' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
+                            </form>
                         </li>
                     {% else %}
                         <li class="nav-item">
@@ -45,14 +49,7 @@
         </div>
     </nav>
 
-    <!-- Contenido principal -->
-    <div class="container mt-4">
-        {% block content %}{% endblock %}
-    </div>
-
-    <!-- Scripts de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-2Yz5K0oZ9xQjmCkj5gDJROqRz1eRPlhr2XItpRytjzo0V5aJ07XLFp8HweE0fgFc" crossorigin="anonymous"></script>
-
-    {% block extra_js %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
