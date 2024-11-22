@@ -11,17 +11,24 @@ from django.contrib import messages
 # Vista de inicio
 def home(request):
     return render(request, 'projects/home.html')
-
+    
 # Vista de registro
 def signup(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)  # Uso CustomUserCreationForm
+        form = CustomUserCreationForm(request.POST)  # Recibe los datos del formulario
         if form.is_valid():
-            user = form.save()  # Guardar el usuario
-            login(request, user)  # Iniciar sesión después del registro
-            return redirect('home')
+            user = form.save()  # Guarda el nuevo usuario
+            company = form.cleaned_data.get('company')  # Obtiene la compañía seleccionada
+            user.company = company  # Asocia la compañía al usuario
+            user.save()  # Guarda el usuario con la compañía asociada
+
+            login(request, user)  # Inicia sesión automáticamente después del registro
+
+            messages.success(request, f'¡Bienvenido {user.username}!')
+            return redirect('home')  # Redirige a la página principal (o la que desees)
     else:
-        form = CustomUserCreationForm()  
+        form = CustomUserCreationForm()  # Si es una solicitud GET, mostramos el formulario vacío
+
     return render(request, 'projects/signup.html', {'form': form})
 
 
