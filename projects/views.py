@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
-from django.contrib.auth.forms import CustomUserCreationForm 
 from django.contrib.auth.decorators import login_required
-from .forms import ProjectForm, TicketForm, UserStoryForm
+from .forms import ProjectForm, TicketForm, UserStoryForm, CustomUserCreationForm
 from .models import Project, Ticket, UserStory
 from django.contrib import messages
+
+
 
 
 # Vista de inicio
