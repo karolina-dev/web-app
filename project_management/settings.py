@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'project_management.wsgi.application'
 
 
 
-DATABASE_URL = os.environ.get('DATABASE_URL)')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
     url = urlparse(DATABASE_URL)
