@@ -70,6 +70,15 @@ def project_list(request):
     projects = Project.objects.all()  # Obtener todos los proyectos
     return render(request, 'projects/project_list.html', {'projects': projects})
 
+#vista de detalles del proyecto
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+
+    # Prefetch para obtener las historias de usuario y tickets asociados
+    project = Project.objects.prefetch_related('user_stories__tickets').get(pk=pk)
+
+    return render(request, 'projects/project_detail.html', {'project': project})
+
 
 # Vista de crear proyecto, validación de historias de usuario
 def create_project(request):
