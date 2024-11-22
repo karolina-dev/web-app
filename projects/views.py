@@ -92,39 +92,6 @@ def create_ticket(request, project_id, user_story_id=None):
     return render(request, 'projects/create_ticket.html', {'form': form, 'project': project})
 
 
-# Vista para crear una historia de usuario junto con el primer ticket
-@login_required
-def create_user_story(request, project_id):
-    project = get_object_or_404(Project, id=project_id)
-    
-    if request.method == 'POST':
-        user_story_form = UserStoryForm(request.POST)
-        ticket_form = TicketForm(request.POST)
-
-        if user_story_form.is_valid() and ticket_form.is_valid():
-            user_story = user_story_form.save(commit=False)
-            user_story.project = project
-            user_story.save()
-
-            ticket = ticket_form.save(commit=False)
-            ticket.user_story = user_story
-            ticket.project = project 
-            ticket.save()
-
-            messages.success(request, "Historia de usuario y ticket creados exitosamente.")
-            return redirect('project_list')  # Redirigir al listado de proyectos
-        else:
-            messages.error(request, "Hubo un error en la creación de la historia de usuario o el ticket.")
-    else:
-        user_story_form = UserStoryForm()
-        ticket_form = TicketForm()
-
-    return render(request, 'projects/create_user_story.html', {
-        'user_story_form': user_story_form,
-        'ticket_form': ticket_form,
-    })
-
-
 # Vista para editar un ticket
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
