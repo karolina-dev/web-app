@@ -96,6 +96,7 @@ def create_ticket(request, project_id, user_story_id=None):
 @login_required
 def create_user_story(request, project_id):
     project = get_object_or_404(Project, id=project_id)
+    
     if request.method == 'POST':
         user_story_form = UserStoryForm(request.POST)
         ticket_form = TicketForm(request.POST)
@@ -107,6 +108,7 @@ def create_user_story(request, project_id):
 
             ticket = ticket_form.save(commit=False)
             ticket.user_story = user_story
+            ticket.project = project 
             ticket.save()
 
             messages.success(request, "Historia de usuario y ticket creados exitosamente.")
