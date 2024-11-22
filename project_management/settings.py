@@ -35,8 +35,8 @@ AUTH_USER_MODEL = 'projects.CustomUser'
 
 
 LOGIN_REDIRECT_URL = 'project_list'
-LOGOUT_REDIRECT_URL = 'home'
-LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = '/'
+
 
 
 

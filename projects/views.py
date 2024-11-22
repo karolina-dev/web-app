@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
 from .forms import ProjectForm, TicketForm, UserStoryForm, CustomUserCreationForm
 from .models import Project, Ticket, UserStory
 from django.contrib import messages
+
 
 
 
@@ -29,11 +30,13 @@ def signup(request):
             login(request, user)  # Inicia sesión automáticamente después del registro
 
             messages.success(request, f'¡Bienvenido {user.username}!')
-            return redirect('project_list')  # Redirige a la página principal (o la que desees)
+            return redirect('login')  # Redirige a la página principal (o la que desees)
     else:
         form = CustomUserCreationForm()  # Si es una solicitud GET, mostramos el formulario vacío
 
     return render(request, 'projects/signup.html', {'form': form})
+
+
 
 #crear historia de usuario
 @login_required

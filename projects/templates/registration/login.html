@@ -5,7 +5,7 @@
 
 {% block content %}
 <h2>Iniciar sesión</h2>
-<form method="post">
+<form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Ingresar</button>
