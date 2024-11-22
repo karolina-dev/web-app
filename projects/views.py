@@ -10,6 +10,10 @@ from django.contrib import messages
 
 # Vista de inicio
 def home(request):
+    if request.user.is_authenticated:
+        print(f'Usuario autenticado: {request.user.username}')
+    else:
+        print('Usuario no autenticado')
     return render(request, 'projects/home.html')
     
 # Vista de registro
@@ -25,7 +29,7 @@ def signup(request):
             login(request, user)  # Inicia sesión automáticamente después del registro
 
             messages.success(request, f'¡Bienvenido {user.username}!')
-            return redirect('home')  # Redirige a la página principal (o la que desees)
+            return redirect('project_list')  # Redirige a la página principal (o la que desees)
     else:
         form = CustomUserCreationForm()  # Si es una solicitud GET, mostramos el formulario vacío
 
@@ -66,6 +70,7 @@ def create_user_story(request, project_id):
 
 
 # Vista de proyectos
+@login_required
 def project_list(request):
     projects = Project.objects.all()  # Obtener todos los proyectos
     return render(request, 'projects/project_list.html', {'projects': projects})
