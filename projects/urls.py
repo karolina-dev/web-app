@@ -11,7 +11,6 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     # Rutas de proyectos
-    path('projects/', include('projects.urls')),
     path('projects/', views.project_list, name='project_list'),
     path('projects/create/', views.create_project, name='create_project'),
     path('projects/<int:pk>/', views.project_detail, name='project_detail'),
