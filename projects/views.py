@@ -131,19 +131,18 @@ def create_ticket(request, project_id, user_story_id=None):
     user_story = get_object_or_404(UserStory, id=user_story_id) if user_story_id else None
 
     if request.method == 'POST':
-        form = TicketForm(request.POST)
+        form = TicketForm(request.POST, user_story=user_story, project=project)  # Pasar `user_story` y `project`
         if form.is_valid():
             ticket = form.save(commit=False)
-            ticket.project = project
+            ticket.project = project  # Asegurar que el proyecto se asocie
             if user_story:
-                ticket.user_story = user_story
+                ticket.user_story = user_story  # Asegurar que la historia de usuario se asocie
             ticket.save()
             return redirect('ticket_list', project_id=project.id)
     else:
-        form = TicketForm(initial={'user_story': user_story})
+        form = TicketForm(user_story=user_story, project=project)  # Inicializar con los valores predeterminados
 
     return render(request, 'projects/create_ticket.html', {'form': form, 'project': project})
-
 
 # Vista para editar un ticket
 def edit_ticket(request, ticket_id):
