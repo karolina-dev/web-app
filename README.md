@@ -86,7 +86,7 @@ Este proyecto es una aplicación web diseñada para gestionar el progreso de dif
 El proyecto se organiza de la siguiente manera:
 
 ```
-project_management/
+web-app
 ├── project_management/       # Configuración general de Django
 │   ├── settings.py           # Configuración de Django (base de datos, etc.)
 │   ├── urls.py               # Rutas de la aplicación
