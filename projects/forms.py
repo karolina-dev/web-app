@@ -29,29 +29,25 @@ class UserStoryForm(forms.ModelForm):
             self.fields['project'].initial = project
 
 # Formulario para Ticket
+from django import forms
+from .models import Ticket, UserStory, Project
+
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['title', 'description', 'user_story', 'status', 'comments', 'project']
 
     def __init__(self, *args, **kwargs):
-        # Obtenemos los parámetros que podrían ser pasados desde la vista
-        user_story = kwargs.pop('user_story', None)  # Historia de usuario inicial
-        project = kwargs.pop('project', None)  # Proyecto inicial
-
+        user_story = kwargs.pop('user_story', None)  # Historia de usuario
+        project = kwargs.pop('project', None)  # Proyecto
         super().__init__(*args, **kwargs)
 
-        # Si se pasa un `user_story` desde la vista, lo configuramos como valor inicial
         if user_story:
-            self.fields['user_story'].initial = user_story  # Inicializamos el campo `user_story`
-        
-        # Si se pasa un `project` desde la vista, lo configuramos como valor inicial
+            self.fields['user_story'].initial = user_story  # Asignar historia de usuario
         if project:
-            self.fields['project'].initial = project  # Inicializamos el campo `project`
+            self.fields['project'].initial = project  # Asignar proyecto
 
-        # Establecemos el queryset de `user_story` para que solo se vean las historias de usuario del proyecto
+        # Establecer los valores de los queryset
         if project:
             self.fields['user_story'].queryset = UserStory.objects.filter(project=project)
-
-        # Establecer el queryset para `project` (aunque podría no ser necesario en este formulario si ya lo pasas desde la vista)
         self.fields['project'].queryset = Project.objects.all()
