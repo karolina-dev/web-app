@@ -84,7 +84,7 @@ def create_user_story(request, project_id):
 @login_required
 def project_list(request):
     projects = Project.objects.all()  # Obtener todos los proyectos
-    return render(request, 'project_list.html', {'projects': projects})
+    return render(request, 'projects/project_list.html', {'projects': projects})
 
 #vista de detalles del proyecto
 from django.shortcuts import render, get_object_or_404
