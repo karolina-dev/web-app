@@ -35,9 +35,23 @@ class TicketForm(forms.ModelForm):
         fields = ['title', 'description', 'user_story', 'status', 'comments', 'project']
 
     def __init__(self, *args, **kwargs):
-        user_story = kwargs.pop('user_story', None)  # Historia de usuario inicial (si se pasa desde la vista)
-        super().__init__(*args, **kwargs)
-        if user_story:
-            self.fields['user_story'].initial = user_story  # Inicializar con la historia asociada
-        self.fields['user_story'].queryset = UserStory.objects.all()  # Mostrar todas las historias existentes
+        # Obtenemos los parámetros que podrían ser pasados desde la vista
+        user_story = kwargs.pop('user_story', None)  # Historia de usuario inicial
+        project = kwargs.pop('project', None)  # Proyecto inicial
 
+        super().__init__(*args, **kwargs)
+
+        # Si se pasa un `user_story` desde la vista, lo configuramos como valor inicial
+        if user_story:
+            self.fields['user_story'].initial = user_story  # Inicializamos el campo `user_story`
+        
+        # Si se pasa un `project` desde la vista, lo configuramos como valor inicial
+        if project:
+            self.fields['project'].initial = project  # Inicializamos el campo `project`
+
+        # Establecemos el queryset de `user_story` para que solo se vean las historias de usuario del proyecto
+        if project:
+            self.fields['user_story'].queryset = UserStory.objects.filter(project=project)
+
+        # Establecer el queryset para `project` (aunque podría no ser necesario en este formulario si ya lo pasas desde la vista)
+        self.fields['project'].queryset = Project.objects.all()
