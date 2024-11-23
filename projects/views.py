@@ -38,8 +38,9 @@ def signup(request):
 @login_required
 def create_user_story(request, project_id):
     project = get_object_or_404(Project, id=project_id)
+    
     if request.method == 'POST':
-        user_story_form = UserStoryForm(request.POST)
+        user_story_form = UserStoryForm(request.POST, project=project)  # Pasar el proyecto al formulario
         ticket_form = TicketForm(request.POST)
 
         if user_story_form.is_valid() and ticket_form.is_valid():
@@ -50,22 +51,21 @@ def create_user_story(request, project_id):
             ticket = ticket_form.save(commit=False)
             ticket.user_story = user_story
             ticket.project = project
-            ticket.status = 'Activo'  # Estado predeterminado para el primer ticket
+            ticket.status = 'Activo'  # Establecer el estado predeterminado del ticket
             ticket.save()
 
             messages.success(request, "Historia de usuario y ticket creados exitosamente.")
-            return redirect('ticket_list', project_id=project.id)  # Redirigir a la lista de tickets del proyecto
+            return redirect('ticket_list', project_id=project.id)
         else:
             messages.error(request, "Hubo un error en la creación de la historia de usuario o el ticket.")
     else:
-        user_story_form = UserStoryForm()
+        user_story_form = UserStoryForm(project=project)  # Pasar el proyecto al formulario
         ticket_form = TicketForm()
 
     return render(request, 'projects/create_user_story.html', {
         'user_story_form': user_story_form,
         'ticket_form': ticket_form,
     })
-
 
 
 # Vista de proyectos
