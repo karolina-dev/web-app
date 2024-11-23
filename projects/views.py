@@ -69,7 +69,6 @@ def create_user_story(request, project_id):
 
 
 # Vista de proyectos
-@login_required
 def project_list(request):
     projects = Project.objects.all()  # Obtener todos los proyectos
     return render(request, 'projects/project_list.html', {'projects': projects})
