@@ -25,6 +25,8 @@ urlpatterns = [
 
     # Crear User Story
     path('projects/<int:project_id>/create_user_story/', views.create_user_story, name='create_user_story'),
+    path('projects/<int:project_id>/create_user_story_and_ticket/', views.create_user_story_and_ticket, name='create_user_story_and_ticket'),
+
 ]
 
 
