@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['.onrender.com']
 AUTH_USER_MODEL = 'projects.CustomUser'
 
 
-LOGIN_REDIRECT_URL = 'project_list'
+LOGIN_REDIRECT_URL = '/projects/'
 LOGOUT_REDIRECT_URL = '/'
 
 
