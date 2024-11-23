@@ -20,7 +20,13 @@ class ProjectForm(forms.ModelForm):
 class UserStoryForm(forms.ModelForm):
     class Meta:
         model = UserStory
-        fields = ['title', 'description', 'project']
+        fields = ['title', 'description']
+
+    def __init__(self, *args, **kwargs):
+        project = kwargs.pop('project', None)  
+        super().__init__(*args, **kwargs)
+        if project:
+            self.fields['project'].initial = project
 
 # Formulario para Ticket
 class TicketForm(forms.ModelForm):
