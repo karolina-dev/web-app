@@ -32,19 +32,7 @@ def signup(request):
 
     return render(request, 'projects/signup.html', {'form': form})
 
-#login
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            # Si el formulario es válido, iniciamos sesión y redirigimos
-            # La función `login` es necesaria para autenticar al usuario
-            login(request, form.get_user())
-            return redirect('projects/project_list')  # O redirige a la página deseada
-    else:
-        form = AuthenticationForm()
 
-    return render(request, 'registration/login.html', {'form': form})
 
 #crear historia de usuario
 @login_required
