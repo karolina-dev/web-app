@@ -40,7 +40,7 @@ def login_view(request):
             # Si el formulario es válido, iniciamos sesión y redirigimos
             # La función `login` es necesaria para autenticar al usuario
             login(request, form.get_user())
-            return redirect('home')  # O redirige a la página deseada
+            return redirect('projects/project_list')  # O redirige a la página deseada
     else:
         form = AuthenticationForm()
 
