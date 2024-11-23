@@ -34,38 +34,79 @@ def signup(request):
 
 
 
-#crear historia de usuario
-@login_required
-def create_user_story(request, project_id):
+#crear historia de usuario y ticket
+# Vista para crear historia de usuario con el primer ticket
+
+def create_user_story_and_ticket(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     
     if request.method == 'POST':
-        user_story_form = UserStoryForm(request.POST, project=project)  # Pasar el proyecto al formulario
+        user_story_form = UserStoryForm(request.POST)
         ticket_form = TicketForm(request.POST)
 
         if user_story_form.is_valid() and ticket_form.is_valid():
+            # Guardar historia de usuario
             user_story = user_story_form.save(commit=False)
             user_story.project = project
             user_story.save()
 
+            # Guardar ticket con estado 'Activo' (el primer ticket)
             ticket = ticket_form.save(commit=False)
             ticket.user_story = user_story
             ticket.project = project
-            ticket.status = 'Activo'  # Establecer el estado predeterminado del ticket
+            ticket.status = 'Activo'  # Estado inicial
             ticket.save()
 
-            messages.success(request, "Historia de usuario y ticket creados exitosamente.")
-            return redirect('ticket_list', project_id=project.id)
+            messages.success(request, "Historia de usuario y primer ticket creados con éxito.")
+            return redirect('project_detail', pk=project.id)  # Redirigir al proyecto
+
         else:
-            messages.error(request, "Hubo un error en la creación de la historia de usuario o el ticket.")
+            messages.error(request, "Hubo un error al crear la historia de usuario o el ticket.")
     else:
-        user_story_form = UserStoryForm(project=project)  # Pasar el proyecto al formulario
+        user_story_form = UserStoryForm()
         ticket_form = TicketForm()
 
     return render(request, 'projects/create_user_story.html', {
         'user_story_form': user_story_form,
         'ticket_form': ticket_form,
+        'project': project,
     })
+
+def create_user_story_and_ticket(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    
+    if request.method == 'POST':
+        user_story_form = UserStoryForm(request.POST)
+        ticket_form = TicketForm(request.POST)
+
+        if user_story_form.is_valid() and ticket_form.is_valid():
+            # Guardar historia de usuario
+            user_story = user_story_form.save(commit=False)
+            user_story.project = project
+            user_story.save()
+
+            # Guardar ticket con estado 'Activo' (el primer ticket)
+            ticket = ticket_form.save(commit=False)
+            ticket.user_story = user_story
+            ticket.project = project
+            ticket.status = 'Activo'  # Estado inicial
+            ticket.save()
+
+            messages.success(request, "Historia de usuario y primer ticket creados con éxito.")
+            return redirect('project_detail', pk=project.id)  # Redirigir al proyecto
+
+        else:
+            messages.error(request, "Hubo un error al crear la historia de usuario o el ticket.")
+    else:
+        user_story_form = UserStoryForm()
+        ticket_form = TicketForm()
+
+    return render(request, 'projects/create_user_story.html', {
+        'user_story_form': user_story_form,
+        'ticket_form': ticket_form,
+        'project': project,
+    })
+
 
 
 # Vista de proyectos
